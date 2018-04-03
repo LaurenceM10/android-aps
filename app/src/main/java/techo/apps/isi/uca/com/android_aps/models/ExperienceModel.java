@@ -5,5 +5,5 @@ package techo.apps.isi.uca.com.android_aps.models;
  */
 
 public class ExperienceModel {
-    //TODO: verify the correct fields of this model
+
 }
