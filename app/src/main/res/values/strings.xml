@@ -1,8 +1,14 @@
 <resources>
-    <string name="app_name">Android-APS</string>
+    <string name="app_name">PSE</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <string name="action_settings">Settings</string>
+
+    <!-- activity_login -->
+    <string name="activity_login_content_description_logo">Logo de la aplicación</string>
+    <string name="activity_login_username_hint">Nombre de usuario</string>
+    <string name="activity_login_password_hint">Contraseña</string>
+    <string name="activity_login_button_text">Iniciar Sesión</string>
+
 </resources>

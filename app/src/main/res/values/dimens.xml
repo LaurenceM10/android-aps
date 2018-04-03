@@ -5,4 +5,11 @@
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <!-- activity_login -->
+    <dimen name="activity_login_header_height">170dp</dimen>
+    <dimen name="activity_login_content_padding">25dp</dimen>
+    <!-- activity_login components dimens -->
+    <dimen name="activity_login_button_margin">20dp</dimen>
+    <dimen name="activity_login_text_input_layout_margin">10dp</dimen>
 </resources>
