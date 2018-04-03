@@ -11,4 +11,14 @@
     <string name="activity_login_password_hint">Contraseña</string>
     <string name="activity_login_button_text">Iniciar Sesión</string>
 
+
+
+    <!-- activity_main_drawer -->
+    <string name="activity_main_drawer_home_item">Inicio</string>
+
+    <!-- activity_main_drawer subsection -->
+    <string name="activity_main_drawer_subsection_title">Otras opciones</string>
+    <string name="activity_main_drawer_profile_item">Perfil</string>
+    <string name="activity_main_drawer_logout_item">Cerrar Sesión</string>
+
 </resources>
