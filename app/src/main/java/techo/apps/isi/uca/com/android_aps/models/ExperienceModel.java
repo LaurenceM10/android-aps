@@ -5,5 +5,8 @@ package techo.apps.isi.uca.com.android_aps.models;
  */
 
 public class ExperienceModel {
-
+    private int id;
+    private String name;
+    private String description;
+    private boolean approved;
 }
