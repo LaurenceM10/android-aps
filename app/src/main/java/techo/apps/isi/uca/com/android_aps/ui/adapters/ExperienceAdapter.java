@@ -1,11 +1,13 @@
 package techo.apps.isi.uca.com.android_aps.ui.adapters;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import techo.apps.isi.uca.com.android_aps.R;
 import techo.apps.isi.uca.com.android_aps.models.ExperienceModel;
 
 /**
@@ -21,12 +23,15 @@ public class ExperienceAdapter extends RecyclerView.Adapter<ExperienceAdapter.Vi
 
     @Override
     public ExperienceAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.experience_item, parent, false);
+
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ExperienceAdapter.ViewHolder holder, int position) {
-
+        ExperienceModel experienceModel = experiences.get(position);
     }
 
     @Override
@@ -34,8 +39,8 @@ public class ExperienceAdapter extends RecyclerView.Adapter<ExperienceAdapter.Vi
         return experiences.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public ViewHolder(View itemView) {
+    class ViewHolder extends RecyclerView.ViewHolder {
+        ViewHolder(View itemView) {
             super(itemView);
         }
     }
