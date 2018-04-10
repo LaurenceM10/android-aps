@@ -5,24 +5,16 @@ package techo.apps.isi.uca.com.android_aps.models;
  */
 
 public class UserModel {
-    private int id;
-    private String username;
+    private String nickname;
     private String password;
+    private String avatar;
 
-    public int getId() {
-        return id;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getPassword() {
@@ -31,5 +23,13 @@ public class UserModel {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }
