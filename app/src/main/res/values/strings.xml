@@ -11,4 +11,7 @@
     <string name="activity_login_password_hint">Contraseña</string>
     <string name="activity_login_button_text">Iniciar Sesión</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
