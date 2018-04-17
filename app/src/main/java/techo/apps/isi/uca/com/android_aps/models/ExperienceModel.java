@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 
 public class ExperienceModel {
-    private int ID;
+    private int id;
     private ArrayList<AchievementModel> achievements = new ArrayList<AchievementModel>();
     private String date;
     private boolean approved;
@@ -23,12 +23,12 @@ public class ExperienceModel {
     private UniversityModel university;
     private String proyectTitle;
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public ArrayList<AchievementModel> getAchievements() {

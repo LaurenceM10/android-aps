@@ -1,11 +1,13 @@
 package techo.apps.isi.uca.com.android_aps.models;
 
+import io.realm.RealmObject;
+
 /**
  * Created by macyarin on 10/4/18.
  */
 
 public class AchievementModel {
-    private int ID;
+    private int id;
     private ExperienceModel experience;
     private String attachmentUri;
     private String description;
@@ -13,12 +15,12 @@ public class AchievementModel {
     private boolean approved;
 
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public ExperienceModel getExperience() {
