@@ -78,6 +78,29 @@
 
             </LinearLayout>
 
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/activity_login_bottom_layout_height"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="@dimen/activity_login_bottom_layout_margin"
+                    android:elevation="@dimen/activity_login_bottom_layout_elevation">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/activity_login_bottom_layout_text"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/activity_login_bottom_layout_text" />
+
+                </android.support.v7.widget.CardView>
+
+            </RelativeLayout>
+
 
         </LinearLayout>
 

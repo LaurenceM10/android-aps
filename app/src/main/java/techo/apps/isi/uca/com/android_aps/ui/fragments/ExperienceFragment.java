@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import techo.apps.isi.uca.com.android_aps.R;
+import techo.apps.isi.uca.com.android_aps.ui.adapters.ExperienceAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,5 +63,7 @@ public class ExperienceFragment extends Fragment {
         // Request with Refrofit
         // Pass data to the adapter
         // Set adapter in Recycler View
+        ExperienceAdapter adapter = new ExperienceAdapter();
+        recyclerView.setAdapter(adapter);
     }
 }

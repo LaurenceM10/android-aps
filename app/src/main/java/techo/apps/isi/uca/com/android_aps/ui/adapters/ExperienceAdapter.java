@@ -17,9 +17,9 @@ import techo.apps.isi.uca.com.android_aps.models.ExperienceModel;
 public class ExperienceAdapter extends RecyclerView.Adapter<ExperienceAdapter.ViewHolder> {
     private ArrayList<ExperienceModel> experiences;
 
-    public ExperienceAdapter(ArrayList<ExperienceModel> experiences) {
-        this.experiences = experiences;
-    }
+//    public ExperienceAdapter(ArrayList<ExperienceModel> experiences) {
+//        this.experiences = experiences;
+//    }
 
     @Override
     public ExperienceAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -31,12 +31,13 @@ public class ExperienceAdapter extends RecyclerView.Adapter<ExperienceAdapter.Vi
 
     @Override
     public void onBindViewHolder(ExperienceAdapter.ViewHolder holder, int position) {
-        ExperienceModel experienceModel = experiences.get(position);
+//        ExperienceModel experienceModel = experiences.get(position);
     }
 
     @Override
     public int getItemCount() {
-        return experiences.size();
+        return 10;
+        //return experiences.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

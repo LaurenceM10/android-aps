@@ -12,4 +12,16 @@
     <!-- activity_login components dimens -->
     <dimen name="activity_login_button_margin">20dp</dimen>
     <dimen name="activity_login_text_input_layout_margin">10dp</dimen>
+    <dimen name="activity_login_bottom_layout_height">50dp</dimen>
+    <dimen name="activity_login_bottom_layout_margin">15dp</dimen>
+    <dimen name="activity_login_bottom_layout_elevation">12dp</dimen>
+    <dimen name="activity_login_bottom_layout_text">18sp</dimen>
+
+
+    <!-- experience_item -->
+    <dimen name="experience_item_height">100dp</dimen>
+    <dimen name="experience_item_elevation">8dp</dimen>
+    <dimen name="experience_item_vertical_margin">3dp</dimen>
+    <dimen name="experience_item_horizontal_margin">4dp</dimen>
+
 </resources>

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,8 +14,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import techo.apps.isi.uca.com.android_aps.R;
+import techo.apps.isi.uca.com.android_aps.ui.fragments.ExperienceFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -31,6 +35,9 @@ public class MainActivity extends AppCompatActivity
         initViews();
         configureViewElements();
         initActions();
+
+        //Set default home item selected
+        setDefaultItemSelected();
     }
 
 
@@ -51,7 +58,7 @@ public class MainActivity extends AppCompatActivity
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: create an action in dependency of the context
+                Toast.makeText(MainActivity.this, "We are working", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -110,18 +117,67 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Class fragmentClass = null;
 
         if (id == R.id.nav_home) {
-
+            fragmentClass = ExperienceFragment.class;
         } else if (id == R.id.nav_profile) {
-
+            startActivity(new Intent(this, ProfileActivity.class));
         } else if (id == R.id.nav_logout) {
-            startActivity(new Intent(this, LoginActivity.class));
-            this.finish();
+            logout();
         }
+
+        //Replace the fragment in the activity
+        replaceFragment(fragmentClass);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    /**
+     * To replace the fragments
+     */
+    private void replaceFragment(Class fragmentClass){
+        /**
+         * Here we replace the fragments. These will be hosted in a FrameLayout
+         * that is inside the content_main (layout).
+         */
+        try {
+            //can be null
+            assert fragmentClass != null;
+            Fragment fragment = (Fragment) fragmentClass.newInstance();
+
+            // Insert the fragment by replacing any existing fragment
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    /**
+     * Set the selected home element by default when you start the application
+     */
+    private void setDefaultItemSelected(){
+        // Selected by default
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        onNavigationItemSelected(navigationView.getMenu().getItem(0));
+
+        // Checked by default
+        onNavigationItemSelected(navigationView.getMenu().getItem(0).setChecked(true));
+    }
+
+
+    /**
+     * To close the session
+     */
+    private void logout(){
+        startActivity(new Intent(this, LoginActivity.class));
+        this.finish();
     }
 }

@@ -10,20 +10,16 @@
     <string name="activity_login_username_hint">Nombre de usuario</string>
     <string name="activity_login_password_hint">Contraseña</string>
     <string name="activity_login_button_text">Iniciar Sesión</string>
+    <string name="activity_login_bottom_layout_text">Universidad Centroamericana</string>
 
-<<<<<<< HEAD
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-=======
-
-
     <!-- activity_main_drawer -->
-    <string name="activity_main_drawer_home_item">Inicio</string>
+    <string name="activity_main_drawer_home_item">Experiencias</string>
 
     <!-- activity_main_drawer subsection -->
     <string name="activity_main_drawer_subsection_title">Otras opciones</string>
     <string name="activity_main_drawer_profile_item">Perfil</string>
     <string name="activity_main_drawer_logout_item">Cerrar Sesión</string>
->>>>>>> feature-navigation
-
 </resources>
