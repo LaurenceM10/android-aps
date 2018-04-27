@@ -11,16 +11,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import techo.apps.isi.uca.com.android_aps.R;
-import techo.apps.isi.uca.com.android_aps.ui.adapters.ExperienceAdapter;
+import techo.apps.isi.uca.com.android_aps.ui.adapters.MessagesAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ExperienceFragment extends Fragment {
+public class MessagesFragment extends Fragment {
     private RecyclerView recyclerView;
 
 
-    public ExperienceFragment() {
+    public MessagesFragment() {
         // Required empty public constructor
     }
 
@@ -29,7 +29,7 @@ public class ExperienceFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_experience, container, false);
+        return inflater.inflate(R.layout.fragment_messages, container, false);
     }
 
     @Override
@@ -37,8 +37,8 @@ public class ExperienceFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         initViews(view);
-        setupRecyclerView();
-        fetchExperiencesData();
+        setupRecyclerview();
+        fetchMessages();
     }
 
     /**
@@ -48,22 +48,17 @@ public class ExperienceFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view);
     }
 
-
     /**
-     * To setup recycler view
+     * To setup the recycler view
      */
-    private void setupRecyclerView() {
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    private void setupRecyclerview() {
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
     }
 
     /**
-     * To fetch experience data from PSE Service (API)
+     * To fetch and show the list of messages
      */
-    private void fetchExperiencesData() {
-        // Request with Refrofit
-        // Pass data to the adapter
-        // Set adapter in Recycler View
-        ExperienceAdapter adapter = new ExperienceAdapter(getActivity());
-        recyclerView.setAdapter(adapter);
+    private void fetchMessages() {
+        recyclerView.setAdapter(new MessagesAdapter(getActivity()));
     }
 }

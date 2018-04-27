@@ -5,9 +5,16 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/ic_home_24dp"
-            android:title="@string/activity_main_drawer_home_item" />
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_home_24dp"
+        android:title="@string/activity_main_drawer_home_item" />
+
+        <item
+        android:id="@+id/nav_chat"
+        android:icon="@drawable/ic_chat_black_24dp"
+        android:title="Chat" />
+
+
     </group>
 
     <item android:title="@string/activity_main_drawer_subsection_title">

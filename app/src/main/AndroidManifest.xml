@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="techo.apps.isi.uca.com.android_aps">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".ApplicationProject"
         android:allowBackup="true"
@@ -23,7 +25,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activities.ProfileActivity"></activity>
+        <activity android:name=".ui.activities.ProfileActivity" />
+        <activity
+            android:name=".ui.activities.DetailMessageActivity"
+            android:label="@string/title_activity_detail_message"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import techo.apps.isi.uca.com.android_aps.R;
 import techo.apps.isi.uca.com.android_aps.ui.fragments.ExperienceFragment;
+import techo.apps.isi.uca.com.android_aps.ui.fragments.MessagesFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -121,6 +122,8 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             fragmentClass = ExperienceFragment.class;
+        } else if (id == R.id.nav_chat) {
+            fragmentClass = MessagesFragment.class;
         } else if (id == R.id.nav_profile) {
             startActivity(new Intent(this, ProfileActivity.class));
         } else if (id == R.id.nav_logout) {

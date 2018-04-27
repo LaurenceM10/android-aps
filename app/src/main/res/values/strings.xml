@@ -22,4 +22,5 @@
     <string name="activity_main_drawer_subsection_title">Otras opciones</string>
     <string name="activity_main_drawer_profile_item">Perfil</string>
     <string name="activity_main_drawer_logout_item">Cerrar Sesión</string>
+    <string name="title_activity_detail_message">DetailMessageActivity</string>
 </resources>

@@ -19,9 +19,37 @@
 
 
     <!-- experience_item -->
-    <dimen name="experience_item_height">100dp</dimen>
+    <dimen name="experience_item_height">200dp</dimen>
     <dimen name="experience_item_elevation">8dp</dimen>
     <dimen name="experience_item_vertical_margin">3dp</dimen>
     <dimen name="experience_item_horizontal_margin">4dp</dimen>
+    <dimen name="experience_item_username_size">17sp</dimen>
+    <dimen name="experience_item_username_margin">8dp</dimen>
+    <!-- experience_item header -->
+    <dimen name="experience_item_header_height">60dp</dimen>
+    <dimen name="experience_item_header_padding">12dp</dimen>
+    <dimen name="experience_item_header_avatar_dimen">40dp</dimen>
+    <!-- experience_item image -->
+    <dimen name="experience_item_image_height">160dp</dimen>
+    <!-- experience_item content -->
+    <dimen name="experience_item_content_height">50dp</dimen>
+
+    <!-- message_item -->
+    <dimen name="message_item_height">80dp</dimen>
+    <dimen name="message_item_vertical_margin">1dp</dimen>
+    <dimen name="message_item_padding">7dp</dimen>
+    <dimen name="message_item_avatar_dimen">50dp</dimen>
+    <dimen name="message_item_avatar_corner_radius">30dp</dimen>
+    <dimen name="message_item_state_connection">15dp</dimen>
+    <dimen name="message_item_state_connection_corner_radius">15dp</dimen>
+    <dimen name="message_item_state_connection_border">1dp</dimen>
+
+    <!-- dialog_profile_placeholder -->
+    <dimen name="dialog_profile_placeholder_height">400dp</dimen>
+    <dimen name="dialog_profile_placeholder_margin">5dp</dimen>
+    <dimen name="dialog_profile_placeholder_avatar_dimen">100dp</dimen>
+    <dimen name="dialog_profile_placeholder_avatar_corner_radius">100dp</dimen>
+    <dimen name="dialog_profile_placeholder_connection_dimen">30dp</dimen>
+    <dimen name="dialog_profile_placeholder_connection_corner_radius">30dp</dimen>
 
 </resources>
