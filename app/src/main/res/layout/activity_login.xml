@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="techo.apps.isi.uca.com.android_aps.ui.activities.LoginActivity">
 
     <ScrollView
@@ -17,87 +18,141 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/activity_login_header"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/activity_login_header_height">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/activity_login_content_description_logo" />
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
+                    app:backgroundImage="@drawable/figure_art_one" />
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/activity_login_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/activity_login_content_padding"
-                android:paddingRight="@dimen/activity_login_content_padding">
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/activity_login_text_input_layout_margin"
-                    android:theme="@style/TextLabel">
-
-                    <EditText
-                        android:id="@+id/username"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/activity_login_username_hint" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/activity_login_text_input_layout_margin"
-                    android:theme="@style/TextLabel">
-
-                    <EditText
-                        android:id="@+id/password"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/activity_login_password_hint"
-                        android:inputType="textPassword" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <Button
-                    android:id="@+id/login"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="@dimen/activity_login_button_margin"
-                    android:background="@drawable/login_button_styles"
-                    android:text="@string/activity_login_button_text"
-                    android:textColor="@color/colorBackground" />
-
-            </LinearLayout>
+            </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <android.support.v7.widget.CardView
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/activity_login_bottom_layout_height"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="@dimen/activity_login_bottom_layout_margin"
-                    android:elevation="@dimen/activity_login_bottom_layout_elevation">
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginBottom="59dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginStart="3dp"
+                        app:backgroundImage="@drawable/figure_art_one" />
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="54dp"
+                        app:backgroundImage="@drawable/figure_art_one" />
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginBottom="13dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        app:backgroundImage="@drawable/figure_art_one" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/activity_login_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/activity_login_bottom_layout_text"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/activity_login_bottom_layout_text" />
+                        android:layout_margin="15dp"
+                        android:background="@drawable/login_container"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/activity_login_content_padding"
+                        android:paddingRight="@dimen/activity_login_content_padding">
 
-                </android.support.v7.widget.CardView>
+                        <com.facebook.drawee.view.SimpleDraweeView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="20dp"
+                            android:layout_marginTop="35dp"
+                            app:backgroundImage="@drawable/figure_art_one" />
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_login_text_input_layout_margin"
+                            android:theme="@style/TextLabel">
+
+                            <EditText
+                                android:id="@+id/username"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/activity_login_username_hint"
+                                android:inputType="textEmailAddress"
+                                android:textColor="@color/textColor"
+                                android:textSize="16sp" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_login_text_input_layout_margin"
+                            android:theme="@style/TextLabel">
+
+                            <EditText
+                                android:id="@+id/password"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/activity_login_password_hint"
+                                android:inputType="textPassword"
+                                android:textColor="@color/textColor"
+                                android:textSize="16sp" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <Button
+                            android:id="@+id/login"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="35dp"
+                            android:layout_marginTop="15dp"
+                            android:background="@drawable/login_button_styles"
+                            android:text="@string/activity_login_button_text"
+                            android:textColor="@color/colorBackground"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
 
             </RelativeLayout>
 

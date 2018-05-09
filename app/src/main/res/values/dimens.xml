@@ -7,7 +7,7 @@
     <dimen name="fab_margin">16dp</dimen>
 
     <!-- activity_login -->
-    <dimen name="activity_login_header_height">170dp</dimen>
+    <dimen name="activity_login_header_height">120dp</dimen>
     <dimen name="activity_login_content_padding">25dp</dimen>
     <!-- activity_login components dimens -->
     <dimen name="activity_login_button_margin">20dp</dimen>
@@ -20,15 +20,17 @@
 
     <!-- experience_item -->
     <dimen name="experience_item_height">200dp</dimen>
-    <dimen name="experience_item_elevation">8dp</dimen>
+    <dimen name="experience_item_elevation">6dp</dimen>
+    <dimen name="experience_item_corner_radius">5dp</dimen>
     <dimen name="experience_item_vertical_margin">3dp</dimen>
     <dimen name="experience_item_horizontal_margin">4dp</dimen>
-    <dimen name="experience_item_username_size">17sp</dimen>
+    <dimen name="experience_item_username_size">15sp</dimen>
     <dimen name="experience_item_username_margin">8dp</dimen>
     <!-- experience_item header -->
-    <dimen name="experience_item_header_height">60dp</dimen>
+    <dimen name="experience_item_header_height">55dp</dimen>
     <dimen name="experience_item_header_padding">12dp</dimen>
     <dimen name="experience_item_header_avatar_dimen">40dp</dimen>
+    <dimen name="experience_item_header_username">16sp</dimen>
     <!-- experience_item image -->
     <dimen name="experience_item_image_height">160dp</dimen>
     <!-- experience_item content -->
@@ -43,6 +45,9 @@
     <dimen name="message_item_state_connection">15dp</dimen>
     <dimen name="message_item_state_connection_corner_radius">15dp</dimen>
     <dimen name="message_item_state_connection_border">1dp</dimen>
+
+    <!-- message_detail -->
+    <dimen name="message_detail_avatar_dimen">35dp</dimen>
 
     <!-- dialog_profile_placeholder -->
     <dimen name="dialog_profile_placeholder_height">400dp</dimen>

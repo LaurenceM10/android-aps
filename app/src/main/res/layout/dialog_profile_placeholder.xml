@@ -7,6 +7,8 @@
     android:minHeight="@dimen/dialog_profile_placeholder_height"
     app:cardCornerRadius="8dp">
 
+    <!-- FIXME/TODO: Clean the code -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -53,7 +55,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="180dp"
             android:orientation="vertical"
             android:padding="15dp">
 
@@ -66,6 +68,15 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="6dp"
+                android:text="Ingeniería en Sistemas"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -73,9 +84,10 @@
                 android:orientation="horizontal">
 
                 <Button
+                    android:id="@+id/message"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="27dp"
+                    android:layout_margin="31dp"
                     android:background="@drawable/send_message_in_dialog"
                     android:clickable="true"
                     android:drawableLeft="@drawable/ic_chat_black_24dp"
@@ -87,9 +99,10 @@
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="150dp">
+            android:layout_height="100dp">
 
             <Button
+                android:id="@+id/visitProfile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"

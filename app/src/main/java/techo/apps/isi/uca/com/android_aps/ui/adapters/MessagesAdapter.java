@@ -2,18 +2,14 @@ package techo.apps.isi.uca.com.android_aps.ui.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import com.facebook.drawee.view.SimpleDraweeView;
 
 import techo.apps.isi.uca.com.android_aps.R;
 import techo.apps.isi.uca.com.android_aps.ui.activities.DetailMessageActivity;
-import techo.apps.isi.uca.com.android_aps.ui.fragments.MessagesFragment;
 
 /**
  * Created by macyarin on 17/4/18.
@@ -60,7 +56,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.ViewHo
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        LinearLayout itemMessage;
+        CardView itemMessage;
 
         ViewHolder(View itemView) {
             super(itemView);

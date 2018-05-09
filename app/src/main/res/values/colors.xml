@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#0274df</color>
-    <color name="colorPrimaryDark">#005aae</color>
-    <color name="colorAccent">#2196F3</color>
+    <color name="colorPrimary">#0265df</color>
+    <color name="colorPrimaryDark">#1b64b3</color>
+    <color name="colorAccent">#ed374f</color>
 
-    <color name="colorBackground">#FFFFFF</color>
+    <!-- alternative colors -->
+    <color name="primaryAlternative">#2fb8f7</color>
+    <color name="login_edit_text_color">#01afff</color>
+
+
+    <color name="textColor">#595959</color>
+    <color name="colorBackground">#effbff</color>
     <color name="colorStatusBar">#10000000</color>
 
     <!-- Reusable colors -->
@@ -14,4 +20,14 @@
 
     <!-- basic colors -->
     <color name="white">#FFFFFF</color>
+    <color name="transparent">#0FFFFFFF</color>zq
+    <color name="transparentBlue">#5a0265df</color>
+
+    <!--login-->
+    <color name="loginContainerBackground">#f0ffffff</color>
+    <color name="loginContainerBorderColor">#2317b1f8</color>
+
+    <!-- message_item -->
+    <color name="messageItemBorderColor">#2d7f8587</color>
+
 </resources>

@@ -1,7 +1,6 @@
 package techo.apps.isi.uca.com.android_aps.ui.adapters;
 
 import android.content.Context;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,6 +54,15 @@ public class ExperienceAdapter extends RecyclerView.Adapter<ExperienceAdapter.Vi
                 Util.showDialogProfile(context);
             }
         });
+
+        holder.username.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Util.showDialogProfile(context);
+            }
+        });
+
+
     }
 
     @Override
