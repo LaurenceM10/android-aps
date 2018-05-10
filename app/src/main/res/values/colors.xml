@@ -17,6 +17,7 @@
     <color name="activeState">#00ff00</color>
     <color name="inactiveState">#ff0004</color>
     <color name="placeholderImage">#c4c4c4</color>
+    <color name="textShadow">#737373</color>
 
     <!-- basic colors -->
     <color name="white">#FFFFFF</color>

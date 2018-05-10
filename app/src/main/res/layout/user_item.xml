@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/experience_item_vertical_margin"
+    android:layout_marginLeft="@dimen/experience_item_horizontal_margin"
+    android:layout_marginRight="@dimen/experience_item_horizontal_margin"
+    android:layout_marginTop="@dimen/experience_item_vertical_margin"
+    android:minHeight="130dp"
+    app:cardCornerRadius="@dimen/experience_item_corner_radius"
+    app:cardElevation="@dimen/experience_item_elevation">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/wallpaper"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                app:placeholderImage="@color/placeholderImage" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/experience_item_header_padding"
+                android:paddingStart="@dimen/experience_item_header_padding"
+                android:paddingTop="15dp"
+                tools:ignore="RtlSymmetry,UselessParent">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp">
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/avatar"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_marginBottom="32dp"
+                        android:layout_marginTop="48dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:placeholderImage="@color/placeholderImage"
+                        app:roundedCornerRadius="70dp"
+                        app:roundingBorderColor="@color/white"
+                        app:roundingBorderWidth="2dp"
+                        tools:ignore="MissingConstraints" />
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/stateConnection"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="58dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:placeholderImage="@color/activeState"
+                        app:roundedCornerRadius="25dp"
+                        app:roundingBorderColor="@color/white"
+                        app:roundingBorderWidth="2dp"
+                        tools:ignore="MissingConstraints" />
+
+
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="60dp"
+                        android:orientation="vertical"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/username"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/experience_item_username_margin"
+                            android:gravity="center"
+                            android:shadowColor="@color/textShadow"
+                            android:shadowDx="1"
+                            android:shadowDy="1"
+                            android:shadowRadius="1"
+                            android:text="Lauren Steven Montenegro"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/career"
+                            android:layout_width="266dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/experience_item_username_margin"
+                            android:layout_marginTop="3dp"
+                            android:text="Ingeniería en Sistemas de Información"
+                            tools:textSize="15sp" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="15dp"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/message"
+                                android:layout_width="wrap_content"
+                                android:layout_height="31dp"
+                                android:gravity="top"
+                                android:layout_marginBottom="6dp"
+                                android:layout_margin="7dp"
+                                android:layout_marginTop="6dp"
+                                android:background="@drawable/send_message_styles"
+                                android:drawableLeft="@drawable/ic_chat_black_24dp"
+                                android:elevation="1dp"
+                                android:text="  Mensaje"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="10sp" />
+                            <!---->
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                </android.support.constraint.ConstraintLayout>
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>

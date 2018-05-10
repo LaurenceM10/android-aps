@@ -102,7 +102,7 @@
                             android:layout_gravity="center"
                             android:layout_marginBottom="20dp"
                             android:layout_marginTop="35dp"
-                            app:backgroundImage="@drawable/figure_art_one" />
+                            app:backgroundImage="@drawable/logo_aps" />
 
                         <android.support.design.widget.TextInputLayout
                             android:layout_width="match_parent"

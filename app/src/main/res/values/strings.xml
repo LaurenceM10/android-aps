@@ -23,4 +23,6 @@
     <string name="activity_main_drawer_profile_item">Perfil</string>
     <string name="activity_main_drawer_logout_item">Cerrar Sesión</string>
     <string name="title_activity_detail_message">DetailMessageActivity</string>
+    <string name="chat_tab_actives_string">Activos</string>
+    <string name="chat_tab_messages_string">Chats</string>
 </resources>
