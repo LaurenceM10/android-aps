@@ -129,16 +129,16 @@
                             <Button
                                 android:id="@+id/message"
                                 android:layout_width="wrap_content"
-                                android:layout_height="31dp"
+                                android:layout_height="32dp"
                                 android:gravity="top"
                                 android:layout_marginBottom="6dp"
                                 android:layout_margin="7dp"
                                 android:layout_marginTop="6dp"
                                 android:background="@drawable/send_message_styles"
-                                android:drawableLeft="@drawable/ic_chat_black_24dp"
+                                android:drawableLeft="@drawable/ic_message_12dp"
                                 android:elevation="1dp"
                                 android:text="  Mensaje"
-                                android:textColor="@color/colorPrimary"
+                                android:textColor="@color/primaryAlternative"
                                 android:textSize="10sp" />
                             <!---->
 

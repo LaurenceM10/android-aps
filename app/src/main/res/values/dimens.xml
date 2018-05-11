@@ -56,5 +56,7 @@
     <dimen name="dialog_profile_placeholder_avatar_corner_radius">100dp</dimen>
     <dimen name="dialog_profile_placeholder_connection_dimen">30dp</dimen>
     <dimen name="dialog_profile_placeholder_connection_corner_radius">30dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 
 </resources>

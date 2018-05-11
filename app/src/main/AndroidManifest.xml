@@ -18,8 +18,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.activities.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBarTranslucent">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBarTranslucent"></activity>
         <activity android:name=".ui.activities.ProfileActivity" />
         <activity
             android:name=".ui.activities.DetailMessageActivity"
@@ -34,6 +33,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.activities.ProfileScrollingActivity"
+            android:label="@string/title_activity_profile_scrolling"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
