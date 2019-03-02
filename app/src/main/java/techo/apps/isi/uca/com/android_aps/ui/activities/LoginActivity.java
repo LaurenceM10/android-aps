@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Remember.init(getApplicationContext(),"");
+        Remember.init(getApplicationContext(),"techo.apps.isi.uca.com.android_aps.ui.activities");
       //  Remember.init(getApplicationContext(),"techo.apps.isi.uca.com.android_aps.ui.activities");
 
         //Call all the necessary methods
@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     private void initViews() {
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
-      //  login = findViewById(R.id.login);
+
     }
 
 
@@ -61,8 +61,8 @@ public class LoginActivity extends AppCompatActivity {
             userModel.setUsername(username.getText().toString());
             userModel.setPassword(password.getText().toString());
             saveUserData(nickname,pass);
-            Call<UserModel> AccesTokenCall =Api.instance().loginUser(userModel);
-            AccesTokenCall.enqueue(new Callback<UserModel>() {
+            Call<UserModel> AccessTokenCall =Api.instance().loginUser(userModel);
+            AccessTokenCall.enqueue(new Callback<UserModel>() {
                 @Override
                 public void onResponse(Call<UserModel> call, Response<UserModel> response) {
                     if(response.isSuccessful()) {
@@ -82,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<UserModel> call, Throwable t) {
-                    Log.e("Err","An error occur while login was doing", t);
+                    Log.e("Err","An error occur while                    login was doing", t);
 
                 }
             });
@@ -102,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.login:
+            case R.id.buttom_login:
                 login();
                 break;
            /*Recovery

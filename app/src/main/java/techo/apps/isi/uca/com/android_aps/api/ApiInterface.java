@@ -18,8 +18,8 @@ public interface ApiInterface {
 
     //Method Post
 
-    @POST("Entities")
-    Call<UserModel> loginUser(UserModel userModel);
+    @POST("auth")
+    Call<UserModel> loginUser(@Body UserModel userModel);
 
 
 }
