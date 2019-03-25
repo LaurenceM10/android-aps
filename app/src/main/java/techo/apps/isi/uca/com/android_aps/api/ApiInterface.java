@@ -6,6 +6,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import techo.apps.isi.uca.com.android_aps.models.AccessToken;
 import techo.apps.isi.uca.com.android_aps.models.UserModel;
 
 /**
@@ -19,7 +20,7 @@ public interface ApiInterface {
     //Method Post
 
     @POST("auth")
-    Call<UserModel> loginUser(@Body UserModel userModel);
+    Call<AccessToken> loginUser(@Body UserModel userModel);
 
 
 }

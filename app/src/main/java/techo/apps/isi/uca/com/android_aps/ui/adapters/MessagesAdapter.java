@@ -11,9 +11,6 @@ import android.view.ViewGroup;
 import techo.apps.isi.uca.com.android_aps.R;
 import techo.apps.isi.uca.com.android_aps.ui.activities.DetailMessageActivity;
 
-/**
- * Created by macyarin on 17/4/18.
- */
 
 public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.ViewHolder> {
     private Context context;

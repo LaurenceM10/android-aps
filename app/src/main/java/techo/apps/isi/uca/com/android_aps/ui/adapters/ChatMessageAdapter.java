@@ -9,9 +9,7 @@ import android.widget.TextView;
 
 import techo.apps.isi.uca.com.android_aps.R;
 
-/**
- * Created by Lauren Steven on 5/5/2018.
- */
+
 public class ChatMessageAdapter extends RecyclerView.Adapter<ChatMessageAdapter.ViewHolder>  {
 
     @Override

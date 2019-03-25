@@ -4,6 +4,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
+    <string name="username_string">Nombre de usuario</string>
 
     <!-- activity_login -->
     <string name="activity_login_content_description_logo">Logo de la aplicación</string>
@@ -11,6 +12,7 @@
     <string name="activity_login_password_hint">Contraseña</string>
     <string name="activity_login_button_text">Iniciar Sesión</string>
     <string name="activity_login_bottom_layout_text">Universidad Centroamericana</string>
+    <string name="question_lose_account">¿olvidaste tu contraseña?</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

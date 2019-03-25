@@ -36,7 +36,7 @@ public class UserActivedAdapter extends RecyclerView.Adapter<UserActivedAdapter.
 
     @Override
     public void onBindViewHolder(UserActivedAdapter.ViewHolder holder, int position) {
-        holder.avatar.setImageURI("https://media-public.fcbarcelona.com/20157/0/document_thumbnail/20197/174/102/254/50226862/1.0-3/50226862.jpg?t=1500558216000");
+        holder.avatar.setImageURI("https://e-fisiomedic.com/wp-content/uploads/2013/11/default-placeholder-300x300.png");
         if (position == 2 || position == 5 || position == 8){
             holder.stateConnection.getHierarchy().setPlaceholderImage(R.color.inactiveState);
         }

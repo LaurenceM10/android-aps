@@ -12,15 +12,11 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import java.util.ArrayList;
 
 import techo.apps.isi.uca.com.android_aps.R;
-import techo.apps.isi.uca.com.android_aps.models.ExperienceModel;
 import techo.apps.isi.uca.com.android_aps.utilities.Util;
 
-/**
- * Created by macyarin on 10/4/18.
- */
 
 public class ExperienceAdapter extends RecyclerView.Adapter<ExperienceAdapter.ViewHolder> {
-    private ArrayList<ExperienceModel> experiences;
+    /*private ArrayList<ExperienceModel> experiences;*/
     private Context context;
 
     public ExperienceAdapter(Context context) {
@@ -42,7 +38,7 @@ public class ExperienceAdapter extends RecyclerView.Adapter<ExperienceAdapter.Vi
     @Override
     public void onBindViewHolder(ExperienceAdapter.ViewHolder holder, int position) {
         //ExperienceModel experienceModel = experiences.get(position);
-        holder.avatar.setImageURI("https://avatars3.githubusercontent.com/u/13529689?s=400&u=7e716ae5a9be7dcfdbb66e4f880b8550c4c90105&v=4");
+        holder.avatar.setImageURI("https://e-fisiomedic.com/wp-content/uploads/2013/11/default-placeholder-300x300.png");
 
         if (position == 2 || position == 5 || position == 8){
             holder.stateConnection.getHierarchy().setPlaceholderImage(R.color.inactiveState);

@@ -64,7 +64,7 @@
                 android:id="@+id/username"
                 android:textSize="@dimen/experience_item_username_size"
                 android:layout_margin="@dimen/experience_item_username_margin"
-                android:text="Lauren Steven Montenegro"
+                android:text="Nombre de usuario"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

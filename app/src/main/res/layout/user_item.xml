@@ -104,7 +104,7 @@
                             android:shadowDx="1"
                             android:shadowDy="1"
                             android:shadowRadius="1"
-                            android:text="Lauren Steven Montenegro"
+                            android:text="@string/username_string"
                             android:textAlignment="center"
                             android:textColor="@color/white"
                             android:textSize="18sp" />

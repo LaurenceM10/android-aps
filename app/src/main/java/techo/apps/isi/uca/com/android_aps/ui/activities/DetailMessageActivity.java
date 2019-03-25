@@ -27,7 +27,7 @@ public class DetailMessageActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         SimpleDraweeView avatar = findViewById(R.id.avatar);
-        avatar.setImageURI("https://avatars3.githubusercontent.com/u/13529689?s=400&u=7e716ae5a9be7dcfdbb66e4f880b8550c4c90105&v=4");
+        avatar.setImageURI("https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png");
 
         initViews();
         initActions();

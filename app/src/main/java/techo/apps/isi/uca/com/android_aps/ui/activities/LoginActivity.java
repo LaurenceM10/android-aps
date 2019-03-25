@@ -3,11 +3,13 @@ package techo.apps.isi.uca.com.android_aps.ui.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -19,7 +21,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import techo.apps.isi.uca.com.android_aps.R;
 import techo.apps.isi.uca.com.android_aps.api.Api;
-import techo.apps.isi.uca.com.android_aps.api.ApiInterface;
 import techo.apps.isi.uca.com.android_aps.models.AccessToken;
 import techo.apps.isi.uca.com.android_aps.models.UserModel;
 
@@ -33,10 +34,13 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         Remember.init(getApplicationContext(),"techo.apps.isi.uca.com.android_aps.ui.activities");
-      //  Remember.init(getApplicationContext(),"techo.apps.isi.uca.com.android_aps.ui.activities");
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
 
         //Call all the necessary methods
         initViews();
+        initActions();
 
     }
 
@@ -46,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
     private void initViews() {
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
+        login = findViewById(R.id.buttom_login);
 
     }
 
@@ -61,12 +66,12 @@ public class LoginActivity extends AppCompatActivity {
             userModel.setUsername(username.getText().toString());
             userModel.setPassword(password.getText().toString());
             saveUserData(nickname,pass);
-            Call<UserModel> AccessTokenCall =Api.instance().loginUser(userModel);
-            AccessTokenCall.enqueue(new Callback<UserModel>() {
+            Call<AccessToken> AccessTokenCall =Api.instance().loginUser(userModel);
+            AccessTokenCall.enqueue(new Callback<AccessToken>() {
                 @Override
-                public void onResponse(Call<UserModel> call, Response<UserModel> response) {
+                public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
                     if(response.isSuccessful()) {
-                        Remember.putString("access_token", response.body().getId(), new Remember.Callback() {
+                       Remember.putString("access_token", response.body().getToken(), new Remember.Callback() {
                             @Override
                             public void apply(Boolean success) {
                                 Toast.makeText(getApplicationContext(), "Success to login", Toast.LENGTH_LONG).show();
@@ -81,8 +86,8 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<UserModel> call, Throwable t) {
-                    Log.e("Err","An error occur while                    login was doing", t);
+                public void onFailure(Call<AccessToken> call, Throwable t) {
+                    Log.e("Err","An error occur while  login was doing", t);
 
                 }
             });
@@ -99,21 +104,13 @@ public class LoginActivity extends AppCompatActivity {
 
         editor.commit();
     }
-
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.buttom_login:
+    private void initActions() {
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 login();
-                break;
-           /*Recovery
-            case :
-
-                break;*/
-        }
-
-
+            }
+        });
     }
-
-
 
 }
