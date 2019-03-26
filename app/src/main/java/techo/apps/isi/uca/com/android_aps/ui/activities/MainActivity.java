@@ -16,41 +16,63 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import techo.apps.isi.uca.com.android_aps.ApplicationProject;
 import techo.apps.isi.uca.com.android_aps.R;
+import techo.apps.isi.uca.com.android_aps.databaseDao.AppDatabase;
 import techo.apps.isi.uca.com.android_aps.ui.fragments.ChatFragment;
 import techo.apps.isi.uca.com.android_aps.ui.fragments.ExperienceFragment;
 import techo.apps.isi.uca.com.android_aps.ui.fragments.UserFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private Toolbar toolbar;
-    private FloatingActionButton floatingActionButton;
-    private DrawerLayout drawerLayout;
-    private NavigationView navigationView;
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
+    @BindView(R.id.fab)
+    FloatingActionButton floatingActionButton;
+
+    @BindView(R.id.nav_view)
+    NavigationView navigationView;
+
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawerLayout;
+
+    @Inject
+    AppDatabase appDatabase;
+
+    private MenuItem menuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ApplicationProject.getInjectComponent(this).inject(this);
         setContentView(R.layout.activity_main);
 
-        //Call all the necessary methods
-        initViews();
-        configureViewElements();
+        ButterKnife.bind(this);
+
+        setSupportActionBar(toolbar);
+
+        //Fragment mainFragment = new MainFragment();
+        //openFragment(mainFragment);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        //navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
         initActions();
 
         //Set default home item selected
         setDefaultItemSelected();
-    }
-
-
-    /**
-     * To get references of the view elements
-     */
-    private void initViews() {
-        toolbar = findViewById(R.id.toolbar);
-        floatingActionButton = findViewById(R.id.fab);
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.nav_view);
     }
 
     /**
@@ -63,23 +85,6 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(MainActivity.this, "We are working", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    /**
-     * To configure some elements of the activity
-     */
-    private void configureViewElements() {
-        //set the support for the action bar
-        setSupportActionBar(toolbar);
-
-        //Configure the ActionBarDrawerToggle
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-
-        //Setup the navigation view
-        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -119,6 +124,11 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+
+        clearSelected();
+
+
+        navigationView.getMenu().findItem(id).setChecked(true);
         Class fragmentClass = null;
 
         if (id == R.id.nav_home) {
@@ -185,5 +195,15 @@ public class MainActivity extends AppCompatActivity
     private void logout(){
         startActivity(new Intent(this, LoginActivity.class));
         this.finish();
+    }
+
+    private void clearSelected() {
+
+        navigationView.getMenu().findItem(R.id.nav_home).setChecked(false);
+        navigationView.getMenu().findItem(R.id.nav_chat).setChecked(false);
+        navigationView.getMenu().findItem(R.id.nav_logout).setChecked(false);
+
+        navigationView.getMenu().findItem(R.id.nav_profile).setChecked(false);
+        navigationView.getMenu().findItem(R.id.nav_users).setChecked(false);
     }
 }
