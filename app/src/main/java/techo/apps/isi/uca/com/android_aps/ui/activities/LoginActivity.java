@@ -3,13 +3,10 @@ package techo.apps.isi.uca.com.android_aps.ui.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -23,6 +20,7 @@ import techo.apps.isi.uca.com.android_aps.R;
 import techo.apps.isi.uca.com.android_aps.api.Api;
 import techo.apps.isi.uca.com.android_aps.models.AccessToken;
 import techo.apps.isi.uca.com.android_aps.models.UserModel;
+import techo.apps.isi.uca.com.android_aps.ui.dialog.SyncUpCatalogDialogFragment;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText username;
@@ -74,12 +72,16 @@ public class LoginActivity extends AppCompatActivity {
                        Remember.putString("access_token", response.body().getToken(), new Remember.Callback() {
                             @Override
                             public void apply(Boolean success) {
+                                SyncUpCatalogDialogFragment dialog = SyncUpCatalogDialogFragment.newInstance();
+                                dialog.setCancelable(false);
+                                dialog.show(getFragmentManager(), "");
                                 Toast.makeText(getApplicationContext(), "Success to login", Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
                                 finish();
                             }
                         });
+
                     }else{
                         Toast.makeText(getApplicationContext(),"An error occur while login was doing",Toast.LENGTH_SHORT).show();
                     }

@@ -8,7 +8,7 @@
     tools:context="techo.apps.isi.uca.com.android_aps.ui.activities.DetailMessageActivity"
     tools:showIn="@layout/activity_detail_message">
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_marginBottom="45dp"
         android:paddingBottom="1dp"

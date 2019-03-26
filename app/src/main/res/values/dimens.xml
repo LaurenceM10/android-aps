@@ -58,5 +58,6 @@
     <dimen name="dialog_profile_placeholder_connection_corner_radius">30dp</dimen>
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="text_normal">16sp</dimen>
 
 </resources>

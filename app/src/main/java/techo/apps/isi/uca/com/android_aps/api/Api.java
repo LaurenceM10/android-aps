@@ -8,6 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class Api {
+    public static final int OK_CODE = 200 ;
     private final static String URL = "http://165.98.12.158:8080/PSEUCA/api/v1.0";
 
     public static String getBase() {
