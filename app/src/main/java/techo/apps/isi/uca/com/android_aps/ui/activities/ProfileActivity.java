@@ -53,12 +53,7 @@ public class ProfileActivity extends AppCompatActivity {
         initViews();
 
         //OnClickListener of the settings button
-        imageButton_settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MostrarDialogo();
-            }
-        });
+        imageButton_settings.setOnClickListener(v -> showDialog());
 
     }
 
@@ -66,7 +61,7 @@ public class ProfileActivity extends AppCompatActivity {
         imageButton_settings = findViewById(R.id.profile_image);
     }
 
-    private void MostrarDialogo(){
+    private void showDialog(){
 
         //Create a new AlertDialog.Builder with the context as parameter
         AlertDialog.Builder ADBuilder = new AlertDialog.Builder(ProfileActivity.this);
