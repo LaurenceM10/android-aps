@@ -20,6 +20,7 @@
     <!-- activity_main_drawer -->
     <string name="activity_main_drawer_home_item">Experiencias</string>
 
+
     <!-- activity_main_drawer subsection -->
     <string name="activity_main_drawer_subsection_title">Otras opciones</string>
     <string name="activity_main_drawer_profile_item">Perfil</string>
