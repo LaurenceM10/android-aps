@@ -26,6 +26,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -51,6 +54,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         initViews();
+        Glide.with(getApplicationContext()).load(R.drawable.profile_img_placeholder).apply(new RequestOptions().circleCrop()).into(imageButton_settings);
 
         //OnClickListener of the settings button
         imageButton_settings.setOnClickListener(v -> showDialog());
@@ -77,44 +81,38 @@ public class ProfileActivity extends AppCompatActivity {
         arrayAdapter.add("Galería");
 
         //Create a dismiss button
-        ADBuilder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();//Close the dialog
-            }
+        ADBuilder.setNegativeButton("Cancelar", (dialog, which) -> {
+            dialog.dismiss();//Close the dialog
         });
 
         //Capture 'OnClick' event from the dialog items
-        ADBuilder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int _item) {
+        ADBuilder.setAdapter(arrayAdapter, (dialog, _item) -> {
 
-                //Create the If to show the selected item
-                if (_item == 0) { //Camera
-                    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                        if (checkSelfPermission(Manifest.permission.CAMERA)==
-                                PackageManager.PERMISSION_DENIED ||
-                                checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)==
-                                        PackageManager.PERMISSION_DENIED){
-                            String [] permission = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
-                            requestPermissions(permission, PERMISSION_CODE);
-                        }
-                        else{
-                            //Open camera
-                            openCamera();
-                        }
+            //Create the If to show the selected item
+            if (_item == 0) { //Camera
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                    if (checkSelfPermission(Manifest.permission.CAMERA)==
+                            PackageManager.PERMISSION_DENIED ||
+                            checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)==
+                                    PackageManager.PERMISSION_DENIED){
+                        String [] permission = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                        requestPermissions(permission, PERMISSION_CODE);
                     }
-                    else {
+                    else{
                         //Open camera
                         openCamera();
                     }
-                } else if (_item == 1) {//gallery
-                    //open gallery
-                    Intent pickPhoto = new Intent(Intent.ACTION_PICK,
-                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    startActivityForResult(pickPhoto , 1);
-
                 }
+                else {
+                    //Open camera
+                    openCamera();
+                }
+            } else if (_item == 1) {//gallery
+                //open gallery
+                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(pickPhoto , 1);
+
             }
         });
 
@@ -142,12 +140,16 @@ public class ProfileActivity extends AppCompatActivity {
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                     // imageButton where you want to set image
-                    imageButton_settings.setImageBitmap(bitmap);
+                    //imageButton_settings.setImageBitmap(bitmap);
+                    Glide.with(getApplicationContext())
+                            .load(uri).apply(new RequestOptions()
+                            .circleCrop()).into(imageButton_settings);
                 } catch(IOException e) {
                     e.printStackTrace();
                 }
             }else{
-                imageButton_settings.setImageURI(image_Uri);
+                //imageButton_settings.setImageURI(image_Uri);
+                Glide.with(getApplicationContext()).load(image_Uri).apply(new RequestOptions().circleCrop()).into(imageButton_settings);
             }
         }
 
