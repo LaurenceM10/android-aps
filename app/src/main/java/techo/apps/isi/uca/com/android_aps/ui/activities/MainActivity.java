@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import javax.inject.Inject;
 
+import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import techo.apps.isi.uca.com.android_aps.ApplicationProject;
@@ -25,16 +26,16 @@ import techo.apps.isi.uca.com.android_aps.R;
 import techo.apps.isi.uca.com.android_aps.databaseDao.AppDatabase;
 import techo.apps.isi.uca.com.android_aps.ui.fragments.ChatFragment;
 import techo.apps.isi.uca.com.android_aps.ui.fragments.ExperienceFragment;
+import techo.apps.isi.uca.com.android_aps.ui.fragments.MainFragment;
 import techo.apps.isi.uca.com.android_aps.ui.fragments.UserFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    //La anotacion bindView es una anotacion de Butter Knife que sirve principalmente para
+    //evitar "Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-
-    @BindView(R.id.fab)
-    FloatingActionButton floatingActionButton;
 
     @BindView(R.id.nav_view)
     NavigationView navigationView;
@@ -50,15 +51,18 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //inject activity main using dagger
         ApplicationProject.getInjectComponent(this).inject(this);
         setContentView(R.layout.activity_main);
 
+        //binding view
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
 
-        //Fragment mainFragment = new MainFragment();
-        //openFragment(mainFragment);
+        //init default fragment (home)
+        Fragment mainFragment = new MainFragment();
+        openFragment(mainFragment);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -69,8 +73,6 @@ public class MainActivity extends AppCompatActivity
         //navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        initActions();
-
         //Set default home item selected
         setDefaultItemSelected();
     }
@@ -78,20 +80,12 @@ public class MainActivity extends AppCompatActivity
     /**
      * To initiate actions when events occur on the elements
      */
-    private void initActions() {
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "We are working", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+        //DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
@@ -127,51 +121,31 @@ public class MainActivity extends AppCompatActivity
 
         clearSelected();
 
-
         navigationView.getMenu().findItem(id).setChecked(true);
-        Class fragmentClass = null;
 
         if (id == R.id.nav_home) {
-            fragmentClass = ExperienceFragment.class;
+            Fragment homeFragment = new ExperienceFragment();
+            openFragment(homeFragment);
         } else if (id == R.id.nav_chat) {
-            fragmentClass = ChatFragment.class;
+            Fragment chatFragment = new ChatFragment();
+            openFragment(chatFragment);
         } else if (id == R.id.nav_users) {
-            fragmentClass = UserFragment.class;
+            Fragment userFragment = new UserFragment();
+            openFragment(userFragment);
         } else if (id == R.id.nav_profile) {
             startActivity(new Intent(this, ProfileActivity.class));
         } else if (id == R.id.nav_logout) {
             logout();
         }
 
-        //Replace the fragment in the activity
-        replaceFragment(fragmentClass);
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        //Close navigation drawer
+        drawerLayout.closeDrawer(GravityCompat.START);
+        //set checked item by id
+        navigationView.setCheckedItem(item.getItemId());
         return true;
     }
 
 
-    /**
-     * To replace the fragments
-     */
-    private void replaceFragment(Class fragmentClass){
-        /**
-         * Here we replace the fragments. These will be hosted in a FrameLayout
-         * that is inside the content_main (layout).
-         */
-        try {
-            //can be null
-            assert fragmentClass != null;
-            Fragment fragment = (Fragment) fragmentClass.newInstance();
-
-            // Insert the fragment by replacing any existing fragment
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
 
 
@@ -205,5 +179,27 @@ public class MainActivity extends AppCompatActivity
 
         navigationView.getMenu().findItem(R.id.nav_profile).setChecked(false);
         navigationView.getMenu().findItem(R.id.nav_users).setChecked(false);
+    }
+
+    private void openFragment(Fragment fragment) {
+        openFragment(fragment, false);
+    }
+
+    private void openFragment(Fragment fragment, boolean anim) {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+        if (anim) {
+            fragmentTransaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
+        }
+
+        fragmentTransaction.replace(R.id.content_frame, fragment);
+
+        FragmentManager manager = getSupportFragmentManager();
+
+        if (manager.getBackStackEntryCount() > 0) {
+            FragmentManager.BackStackEntry first = manager.getBackStackEntryAt(0);
+            manager.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }
+        fragmentTransaction.commit();
     }
 }

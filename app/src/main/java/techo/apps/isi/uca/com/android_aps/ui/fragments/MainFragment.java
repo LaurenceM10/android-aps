@@ -9,15 +9,34 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import techo.apps.isi.uca.com.android_aps.ApplicationProject;
 import techo.apps.isi.uca.com.android_aps.R;
+import techo.apps.isi.uca.com.android_aps.databaseDao.AppDatabase;
 
+/**
+ * Created by farinas09 on 29/03/19.
+ */
+public class MainFragment extends BaseFragment {
 
+    @BindView(R.id.recycler_view)
+    RecyclerView recyclerView;
 
-public class MainFragment extends Fragment {
+    @BindView(R.id.add_experience_action_button)
+    FloatingActionButton newExperienceButton;
 
-
-    private OnFragmentInteractionListener mListener;
+    @Inject
+    AppDatabase appDatabase;
 
     public MainFragment() {
         // Required empty public constructor
@@ -31,42 +50,45 @@ public class MainFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ApplicationProject.getInjectComponent(this).inject(this);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        ApplicationProject.getInjectComponent(this).inject(this);
+        return super.onCreateView(inflater, container, savedInstanceState);
 
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false);
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+    protected int getLayoutResourceId() {
+        return R.layout.fragment_main;
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+    protected String getTitle() {
+        return null;
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
+    private void init() {
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setHasFixedSize(true);
+        //setAdapter(appDatabase.ExperienceDao().getAllOrganized());
+        newExperienceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "Estamos trabajando", Toast.LENGTH_SHORT).show();
+                //openNewExperience Fragment();
+            }
+        });
+
     }
 
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
+    //private void setAdapter(List<Experience> experiences) {
+    //    GridAdapter gridAdapter = new GridAdapter(experiences, getActivity());
+    //    recyclerView.setAdapter(gridAdapter);
+    //}
+
+
 }

@@ -7,26 +7,13 @@ import android.content.Context;
 
 import techo.apps.isi.uca.com.android_aps.models.*;
 
-@Database(entities = {Person.class}, version = 1)
+@Database(entities = {Person.class, Student.class, Carrer.class, Experience.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract PersonDao personDao();
+    public abstract StudentDao studentDao();
+    public abstract CarrerDao carrerDao();
+    public abstract ExperienceDao experienceDao();
 
-    private static AppDatabase INSTANCE;
 
-    public static AppDatabase getAppDatabase(Context context) {
-        if (INSTANCE == null) {
-            INSTANCE =
-                    Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "user-database")
-                            // allow queries on the main thread.
-                            // Don't do this on a real app! See PersistenceBasicSample for an example.
-                            .allowMainThreadQueries()
-                            .build();
-        }
-        return INSTANCE;
-    }
-
-    public static void destroyInstance() {
-        INSTANCE = null;
-    }
 }

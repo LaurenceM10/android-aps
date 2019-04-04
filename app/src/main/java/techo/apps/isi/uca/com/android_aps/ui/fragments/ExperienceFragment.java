@@ -63,7 +63,5 @@ public class ExperienceFragment extends Fragment {
         // Request with Refrofit
         // Pass data to the adapter
         // Set adapter in Recycler View
-        ExperienceAdapter adapter = new ExperienceAdapter(getActivity());
-        recyclerView.setAdapter(adapter);
     }
 }

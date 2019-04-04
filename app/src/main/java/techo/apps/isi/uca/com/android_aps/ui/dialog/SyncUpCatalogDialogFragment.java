@@ -117,18 +117,11 @@ public class SyncUpCatalogDialogFragment extends android.app.DialogFragment {
                         imageView.setVisibility(View.VISIBLE);
 
                         for (Person person : result) {
+                            Person personItem = appDatabase.personDao().loadById(person.getId());
 
-                            Person vulnerabilitySheetHeaderItem
-                                    = appDatabase.personDao().loadById(person.getId());
-
-
-                            if (vulnerabilitySheetHeaderItem == null) {
+                            if (personItem == null) {
                                 appDatabase.personDao().insert(person);
-
-
-
                             }
-
                         }
                     }
                 }
