@@ -3,21 +3,31 @@ package techo.apps.isi.uca.com.android_aps.models;
 import java.util.List;
 
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 @Entity
 public class Cohort {
 
-
-    private Carrer carrer;
+    @PrimaryKey
+    private int id;
+    private int carrer_id;
     private String start_date;
     private String status;
 
-    public Carrer getCarrer() {
-        return carrer;
+    public int getId() {
+        return id;
     }
 
-    public void setCarrer(Carrer carrer) {
-        this.carrer = carrer;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getCarrer_id() {
+        return carrer_id;
+    }
+
+    public void setCarrer_id(int carrer_id) {
+        this.carrer_id = carrer_id;
     }
 
     public String getStart_date() {
