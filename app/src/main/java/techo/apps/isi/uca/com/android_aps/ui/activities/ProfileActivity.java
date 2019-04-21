@@ -1,27 +1,20 @@
 package techo.apps.isi.uca.com.android_aps.ui.activities;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -29,16 +22,10 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import androidx.appcompat.widget.Toolbar;
 import techo.apps.isi.uca.com.android_aps.R;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -46,6 +33,7 @@ public class ProfileActivity extends AppCompatActivity {
     private static final int IMAGE_CAPTURE_CODE=1001;
     Uri image_Uri;
     private ImageButton imageButton_settings;
+    ImageView addImageMenu;
 
 
     @Override
@@ -56,13 +44,22 @@ public class ProfileActivity extends AppCompatActivity {
         initViews();
         Glide.with(getApplicationContext()).load(R.drawable.profile_img_placeholder).apply(new RequestOptions().circleCrop()).into(imageButton_settings);
 
-        //OnClickListener of the settings button
-        imageButton_settings.setOnClickListener(v -> showDialog());
+        initActions();
 
     }
 
     private void initViews() {
+        addImageMenu = findViewById(R.id.add_image_menu);
         imageButton_settings = findViewById(R.id.profile_image);
+    }
+
+    private void initActions(){
+        //OnClickListener of the settings button
+        //imageButton_settings.setOnClickListener(v -> );
+        addImageMenu.setOnClickListener(view -> {
+            showDialog();
+        });
+        imageButton_settings.setOnClickListener(view -> showDialogPreviewImage());
     }
 
     private void showDialog(){
@@ -172,4 +169,24 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
     }
+
+    private void showDialogPreviewImage(){
+        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        assert inflater != null;
+        View view = inflater.inflate(R.layout.dialog_preview_image, null); // The view that contains the ImageView we will use.
+        ImageView previewImage = view.findViewById(R.id.preview_profile_image); // This is the ImageView that we need to send link into.
+
+        // Through Glide library load uri (is image's URL) into ImageView.
+        Glide.with(this).load(imageButton_settings.getDrawable()).apply(new RequestOptions().optionalCenterInside()).into(previewImage);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, android.R.style.Theme_Black_NoTitleBar); // Here we change the theme of AlertDialog
+        builder.setCancelable(true);
+        AlertDialog dialog = builder.create();
+        if(view.getParent() != null) {
+            ((ViewGroup)view.getParent()).removeView(view);
+        }
+        dialog.setView(view); // We say to the dialog that it will show the ImageView.
+        dialog.show(); // Open the dialog.
+    }
+
 }
