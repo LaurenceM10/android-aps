@@ -64,7 +64,7 @@
                     android:id="@+id/userName_textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nombre Usuario"
+
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
                     android:gravity="center"
@@ -84,6 +84,7 @@
 
         </LinearLayout>
 
+        <!--
         <LinearLayout
             android:id="@+id/bottom_LinearLayout"
             android:layout_below="@+id/topLinearLayout"
@@ -96,6 +97,7 @@
 
         </LinearLayout>
 
+-->
     </LinearLayout>
 
 </ScrollView>

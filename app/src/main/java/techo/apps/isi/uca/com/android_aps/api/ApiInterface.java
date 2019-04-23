@@ -6,6 +6,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import techo.apps.isi.uca.com.android_aps.models.AccessToken;
 import techo.apps.isi.uca.com.android_aps.models.Person;
@@ -23,9 +24,9 @@ public interface ApiInterface {
     @GET("GET/People")
     Call<List<Person>> getPeople(@Header("Authorization") String authorization);
 
-    @GET("/GET/Students?id={id}")
-    Call<List<Student>> getStudentById(@Query("id") int id, @Header("Authorization") String Authorization);
-    
+    @GET("GET/People?id={id}")
+    Call<Student> getStudentById(@Header("Authorization") String Authorization, @Path("id") int id);
+
     //Method Post
 
     @POST("auth")

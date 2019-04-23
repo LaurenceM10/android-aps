@@ -11,22 +11,36 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.material.navigation.NavigationView;
+import com.tumblr.remember.Remember;
 
 import java.io.IOException;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import techo.apps.isi.uca.com.android_aps.R;
+import techo.apps.isi.uca.com.android_aps.api.Api;
+import techo.apps.isi.uca.com.android_aps.api.ApiInterface;
+import techo.apps.isi.uca.com.android_aps.models.AccessToken;
+import techo.apps.isi.uca.com.android_aps.models.Person;
+import techo.apps.isi.uca.com.android_aps.models.Student;
+import techo.apps.isi.uca.com.android_aps.models.UserModel;
 
 public class ProfileActivity extends AppCompatActivity {
     private static final int PERMISSION_CODE = 1000;
@@ -35,6 +49,8 @@ public class ProfileActivity extends AppCompatActivity {
     private ImageButton imageButton_settings;
     ImageView addImageMenu;
 
+    private TextView userNameTextView;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +61,15 @@ public class ProfileActivity extends AppCompatActivity {
         Glide.with(getApplicationContext()).load(R.drawable.profile_img_placeholder).apply(new RequestOptions().circleCrop()).into(imageButton_settings);
 
         initActions();
+        fillUserInfo();
 
     }
 
     private void initViews() {
         addImageMenu = findViewById(R.id.add_image_menu);
         imageButton_settings = findViewById(R.id.profile_image);
+
+        userNameTextView = findViewById(R.id.userName_textView);
     }
 
     private void initActions(){
@@ -187,6 +206,35 @@ public class ProfileActivity extends AppCompatActivity {
         }
         dialog.setView(view); // We say to the dialog that it will show the ImageView.
         dialog.show(); // Open the dialog.
+    }
+
+    private void fillUserInfo(){
+        Call<Student> callStudent = Api.instance().getStudentById("Bearer "+ Remember.getString("access_token",""), Remember.getInt("id",0));
+        callStudent.enqueue(new Callback<Student>() {
+            @Override
+            public void onResponse(Call<Student> call, Response<Student> response) {
+                if (response.isSuccessful()) {
+                    String name = response.body().getName();
+                    userNameTextView.setText(name);
+
+                    Toast.makeText(getApplicationContext(), "Request successful", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "An error occurred while getting user info", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Student> call, Throwable t) {
+                Log.e("Err", "An error occurred while getting user info", t);
+            }
+        });
+
+    }
+
+    private void setDataMenu(){
+        //To set dinamically data in the drawer menu
+        View header = navigationView.getHeaderView(0);
+
     }
 
 }

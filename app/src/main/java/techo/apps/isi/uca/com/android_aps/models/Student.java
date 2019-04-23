@@ -1,5 +1,7 @@
 package techo.apps.isi.uca.com.android_aps.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -8,24 +10,27 @@ import androidx.room.PrimaryKey;
 public class Student {
 
     @PrimaryKey
+    @SerializedName("id")
     private int id;
 
     @ColumnInfo
-    private String gender;
-
-    @ColumnInfo
-    private String name;
-
-    @ColumnInfo
+    @SerializedName("emails")
     private String emails;
 
     @ColumnInfo
-    private String license;
+    @SerializedName("gender")
+    private String gender;
 
     @ColumnInfo
-    private String password;
+    @SerializedName("idCard")
+    private String idCard;
 
     @ColumnInfo
+    @SerializedName("name")
+    private String name;
+
+    @ColumnInfo
+    @SerializedName("phones")
     private String phones;
 
     public int getId() {
@@ -34,30 +39,6 @@ public class Student {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getLicense() {
-        return license;
-    }
-
-    public void setLicense(String license) {
-        this.license = license;
-    }
-
-    public String getPhones() {
-        return phones;
-    }
-
-    public void setPhones(String phones) {
-        this.phones = phones;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getEmails() {
@@ -76,6 +57,14 @@ public class Student {
         this.gender = gender;
     }
 
+    public String getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
+    }
+
     public String getName() {
         return name;
     }
@@ -84,5 +73,11 @@ public class Student {
         this.name = name;
     }
 
+    public String getPhones() {
+        return phones;
+    }
 
+    public void setPhones(String phones) {
+        this.phones = phones;
+    }
 }
