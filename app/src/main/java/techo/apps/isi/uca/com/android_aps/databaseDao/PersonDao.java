@@ -24,7 +24,6 @@ public interface PersonDao {
     @Query("SELECT * FROM Person a WHERE a.name LIKE :name")
     List<Person> loadBYName(String name);
 
-
     @Delete
     void delete(Person person);
 

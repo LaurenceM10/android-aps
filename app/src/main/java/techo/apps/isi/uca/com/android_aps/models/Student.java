@@ -2,6 +2,9 @@ package techo.apps.isi.uca.com.android_aps.models;
 
 import java.util.List;
 
+import com.google.gson.annotations.SerializedName;
+
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -9,16 +12,28 @@ import androidx.room.PrimaryKey;
 public class Student {
 
     @PrimaryKey
+    @SerializedName("id")
     private int id;
-    private String emails;
-    private String license;
-    private String username;
-    private String password;
-    private String gender;
-    private String name;
-    private String phones;
-    private String cohort;
 
+    @ColumnInfo
+    @SerializedName("emails")
+    private String emails;
+
+    @ColumnInfo
+    @SerializedName("gender")
+    private String gender;
+
+    @ColumnInfo
+    @SerializedName("idCard")
+    private String idCard;
+
+    @ColumnInfo
+    @SerializedName("name")
+    private String name;
+
+    @ColumnInfo
+    @SerializedName("phones")
+    private String phones;
     public int getId() {
         return id;
     }
@@ -65,6 +80,14 @@ public class Student {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
     }
 
     public String getName() {

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.tumblr.remember.Remember;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.core.view.GravityCompat;
@@ -11,19 +13,30 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.nio.channels.InterruptedByTimeoutException;
 
 import javax.inject.Inject;
 
 import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import techo.apps.isi.uca.com.android_aps.ApplicationProject;
 import techo.apps.isi.uca.com.android_aps.R;
+import techo.apps.isi.uca.com.android_aps.api.Api;
 import techo.apps.isi.uca.com.android_aps.databaseDao.AppDatabase;
+import techo.apps.isi.uca.com.android_aps.models.Student;
 import techo.apps.isi.uca.com.android_aps.ui.fragments.ChatFragment;
 import techo.apps.isi.uca.com.android_aps.ui.fragments.ExperienceFragment;
 import techo.apps.isi.uca.com.android_aps.ui.fragments.MainFragment;
@@ -32,8 +45,12 @@ import techo.apps.isi.uca.com.android_aps.ui.fragments.UserFragment;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    //La anotacion bindView es una anotacion de Butter Knife que sirve principalmente para
-    //evitar "Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+    private ImageView avatar_menu;
+    private TextView userNameTextView;
+    private TextView emailTextView;
+    private String userName;
+    private String email;
+
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
@@ -72,14 +89,30 @@ public class MainActivity extends AppCompatActivity
 
         //navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        initViews();
+        initActions();
 
         //Set default home item selected
         setDefaultItemSelected();
+
+        fillUserInfo();
+    }
+
+    private void initViews() {
+        avatar_menu = findViewById(R.id.avatar_menu);
+        userNameTextView = findViewById(R.id.username_menu);
+        emailTextView = findViewById(R.id.email_menu);
     }
 
     /**
      * To initiate actions when events occur on the elements
      */
+    private void initActions() {
+        floatingActionButton.setOnClickListener(view ->
+                Toast.makeText(MainActivity.this, "We are working", Toast.LENGTH_SHORT).show());
+
+
+    }
 
     @Override
     public void onBackPressed() {
@@ -201,5 +234,42 @@ public class MainActivity extends AppCompatActivity
             manager.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
         }
         fragmentTransaction.commit();
+
+    private void fillUserInfo(){
+        Call<Student> callStudent = Api.instance().getStudentById("Bearer "+ Remember.getString("access_token",""), Remember.getInt("id",0));
+        callStudent.enqueue(new Callback<Student>() {
+            @Override
+            public void onResponse(Call<Student> call, Response<Student> response) {
+                if (response.isSuccessful()) {
+                    userName = response.body().getName();
+                    email = response.body().getEmails();
+
+                    setDataMenu();
+
+                    Toast.makeText(getApplicationContext(), "Request successful", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "An error occurred while getting user info", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Student> call, Throwable t) {
+                Log.e("Err", "An error occurred while getting user info", t);
+            }
+        });
+
+    }
+
+    private void setDataMenu(){
+        //To set dinamically data in the drawer menu
+        View header = navigationView.getHeaderView(0);
+        avatar_menu = header.findViewById(R.id.avatar_menu);
+
+        userNameTextView = header.findViewById(R.id.username_menu);
+        userNameTextView.setText(userName);
+
+        emailTextView = header.findViewById(R.id.email_menu);
+        emailTextView.setText(email);
+
     }
 }
