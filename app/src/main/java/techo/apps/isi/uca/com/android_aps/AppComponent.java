@@ -9,6 +9,7 @@ import dagger.Component;
 import techo.apps.isi.uca.com.android_aps.ui.activities.MainActivity;
 import techo.apps.isi.uca.com.android_aps.ui.adapters.ExperienceAdapter;
 import techo.apps.isi.uca.com.android_aps.ui.dialog.SyncUpCatalogDialogFragment;
+import techo.apps.isi.uca.com.android_aps.ui.fragments.ExperienceFragment;
 import techo.apps.isi.uca.com.android_aps.ui.fragments.MainFragment;
 
 @Singleton
@@ -30,6 +31,7 @@ public interface AppComponent {
 
     // Fragments
     void inject(MainFragment target);
+    void inject(ExperienceFragment target);
 
     //Adapters
     void inject(ExperienceAdapter target);

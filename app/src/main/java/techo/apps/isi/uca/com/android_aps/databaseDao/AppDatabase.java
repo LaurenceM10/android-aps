@@ -7,13 +7,12 @@ import android.content.Context;
 
 import techo.apps.isi.uca.com.android_aps.models.*;
 
-@Database(entities = {Person.class, Student.class, Carrer.class, Experience.class, Cohort.class}, version = 1, exportSchema = false)
+@Database(entities = {Person.class, Student.class, Carrer.class, Cohort.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract PersonDao personDao();
     public abstract StudentDao studentDao();
     public abstract CarrerDao carrerDao();
-    public abstract ExperienceDao experienceDao();
 
 
 }

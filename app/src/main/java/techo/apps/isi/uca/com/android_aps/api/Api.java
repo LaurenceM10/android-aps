@@ -3,9 +3,7 @@ package techo.apps.isi.uca.com.android_aps.api;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Created by macyarin on 10/4/18.
- */
+
 
 public class Api {
     public static final int OK_CODE = 200 ;

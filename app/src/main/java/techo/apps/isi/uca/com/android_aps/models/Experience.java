@@ -1,15 +1,19 @@
 package techo.apps.isi.uca.com.android_aps.models;
 
+import java.util.List;
+
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity
+
 public class Experience {
 
-    @PrimaryKey
+
     private int id;
     private String name;
-    private int personId;
+    private boolean aproved;
+    private int author;
+    private List<Field> fields;
 
     public int getId() {
         return id;
@@ -27,11 +31,27 @@ public class Experience {
         this.name = name;
     }
 
-    public int getPersonId() {
-        return personId;
+    public boolean isAproved() {
+        return aproved;
     }
 
-    public void setPersonId(int personId) {
-        this.personId = personId;
+    public void setAproved(boolean aproved) {
+        this.aproved = aproved;
+    }
+
+    public int getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(int author) {
+        this.author = author;
+    }
+
+    public List<Field> getFields() {
+        return fields;
+    }
+
+    public void setFields(List<Field> fields) {
+        this.fields = fields;
     }
 }

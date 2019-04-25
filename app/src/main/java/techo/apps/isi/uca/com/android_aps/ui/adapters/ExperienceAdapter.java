@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -23,18 +24,23 @@ import techo.apps.isi.uca.com.android_aps.R;
 import techo.apps.isi.uca.com.android_aps.callback.OnRecyclerViewItemClickListener;
 import techo.apps.isi.uca.com.android_aps.databaseDao.AppDatabase;
 import techo.apps.isi.uca.com.android_aps.models.Experience;
+import techo.apps.isi.uca.com.android_aps.models.Person;
 import techo.apps.isi.uca.com.android_aps.utilities.Util;
 
 
 public class ExperienceAdapter extends RecyclerView.Adapter<ExperienceAdapter.ViewHolder> implements View.OnClickListener {
+
     private List<Experience> experiences;
+
+    private List<Person> people;
     private OnRecyclerViewItemClickListener<Experience> itemClickListener;
     private Activity context;
 
     @Inject
     AppDatabase database;
 
-    public ExperienceAdapter(List<Experience> experiences, Activity context) {
+    public ExperienceAdapter(List<Person> people, List<Experience> experiences, Activity context) {
+        this.people = people;
         this.experiences = experiences;
         this.context = context;
     }
@@ -53,8 +59,8 @@ public class ExperienceAdapter extends RecyclerView.Adapter<ExperienceAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        //final Experience experience = experiences.get(position);
+    public void onBindViewHolder(ViewHolder holder, final int position) {
+       // Experience experience = experiences.get(position);
         holder.profilePicture.setImageURI("https://e-fisiomedic.com/wp-content/uploads/2013/11/default-placeholder-300x300.png");
 
         if (position == 2 || position == 5 || position == 8){
@@ -68,6 +74,11 @@ public class ExperienceAdapter extends RecyclerView.Adapter<ExperienceAdapter.Vi
             }
         });
 
+        for(int i=0; i<people.size(); i++){
+            if(people.get(i).getId()==experiences.get(position).getAuthor()){
+                holder.username.setText(people.get(i).getName());
+            }
+        }
         holder.username.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,8 +91,8 @@ public class ExperienceAdapter extends RecyclerView.Adapter<ExperienceAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return 10;
-        //return experiences.size();
+        //cambio aquí
+        return null!=experiences?experiences.size():0;
     }
 
     @Override

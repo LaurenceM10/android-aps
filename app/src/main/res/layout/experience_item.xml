@@ -81,6 +81,20 @@
             android:layout_height="wrap_content"
             android:minHeight="@dimen/experience_item_content_height"
             android:orientation="vertical">
+            <TextView
+                android:id="@+id/experience_name_txt"
+                android:textSize="@dimen/experience_item_username_size"
+                android:layout_margin="@dimen/experience_item_username_margin"
+                android:text="Nombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/description_txt"
+                android:textSize="@dimen/experience_item_username_size"
+                android:layout_margin="@dimen/experience_item_username_margin"
+                android:text="Descripcion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
