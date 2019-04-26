@@ -2,7 +2,7 @@ package techo.apps.isi.uca.com.android_aps.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import com.google.android.material.navigation.NavigationView;
 import com.tumblr.remember.Remember;
 
@@ -14,6 +14,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,6 +34,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import techo.apps.isi.uca.com.android_aps.ApplicationProject;
+
 import techo.apps.isi.uca.com.android_aps.R;
 import techo.apps.isi.uca.com.android_aps.api.Api;
 import techo.apps.isi.uca.com.android_aps.databaseDao.AppDatabase;
@@ -45,12 +47,8 @@ import techo.apps.isi.uca.com.android_aps.ui.fragments.UserFragment;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private ImageView avatar_menu;
-    private TextView userNameTextView;
-    private TextView emailTextView;
-    private String userName;
-    private String email;
-
+    //La anotacion bindView es una anotacion de Butter Knife que sirve principalmente para
+    //evitar "Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
@@ -89,30 +87,14 @@ public class MainActivity extends AppCompatActivity
 
         //navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        initViews();
-        initActions();
 
         //Set default home item selected
         setDefaultItemSelected();
-
-        fillUserInfo();
-    }
-
-    private void initViews() {
-        avatar_menu = findViewById(R.id.avatar_menu);
-        userNameTextView = findViewById(R.id.username_menu);
-        emailTextView = findViewById(R.id.email_menu);
     }
 
     /**
      * To initiate actions when events occur on the elements
      */
-    private void initActions() {
-        floatingActionButton.setOnClickListener(view ->
-                Toast.makeText(MainActivity.this, "We are working", Toast.LENGTH_SHORT).show());
-
-
-    }
 
     @Override
     public void onBackPressed() {
@@ -200,8 +182,8 @@ public class MainActivity extends AppCompatActivity
      * To close the session
      */
     private void logout(){
-        startActivity(new Intent(this, LoginActivity.class));
-        this.finish();
+        Remember.putString("access_token", "");
+        validateSession();
     }
 
     private void clearSelected() {
@@ -234,42 +216,15 @@ public class MainActivity extends AppCompatActivity
             manager.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
         }
         fragmentTransaction.commit();
-
-    private void fillUserInfo(){
-        Call<Student> callStudent = Api.instance().getStudentById("Bearer "+ Remember.getString("access_token",""), Remember.getInt("id",0));
-        callStudent.enqueue(new Callback<Student>() {
-            @Override
-            public void onResponse(Call<Student> call, Response<Student> response) {
-                if (response.isSuccessful()) {
-                    userName = response.body().getName();
-                    email = response.body().getEmails();
-
-                    setDataMenu();
-
-                    Toast.makeText(getApplicationContext(), "Request successful", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "An error occurred while getting user info", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Student> call, Throwable t) {
-                Log.e("Err", "An error occurred while getting user info", t);
-            }
-        });
-
+    }
+    private void validateSession() {
+        if (Remember.getString("access_token", "").isEmpty()) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
-    private void setDataMenu(){
-        //To set dinamically data in the drawer menu
-        View header = navigationView.getHeaderView(0);
-        avatar_menu = header.findViewById(R.id.avatar_menu);
 
-        userNameTextView = header.findViewById(R.id.username_menu);
-        userNameTextView.setText(userName);
-
-        emailTextView = header.findViewById(R.id.email_menu);
-        emailTextView.setText(email);
-
-    }
 }
+

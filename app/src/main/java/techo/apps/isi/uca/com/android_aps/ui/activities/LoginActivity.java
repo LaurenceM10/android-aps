@@ -37,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         decorView.setSystemUiVisibility(uiOptions);
 
         //Call all the necessary methods
+        validateSession();
         initViews();
         initActions();
 
@@ -69,15 +70,18 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
                     if(response.isSuccessful()) {
-                       Remember.putString("access_token", response.body().getToken(), success -> {
-                           SyncUpCatalogDialogFragment dialog = SyncUpCatalogDialogFragment.newInstance();
-                           dialog.setCancelable(false);
-                           dialog.show(getFragmentManager(), "");
-                           //Toast.makeText(getApplicationContext(), "Success to login", Toast.LENGTH_LONG).show();
-                           Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                           startActivity(intent);
-                           finish();
-                       });
+                        Remember.putString("access_token", response.body().getToken(), new Remember.Callback() {
+                            @Override
+                            public void apply(Boolean success) {
+                                SyncUpCatalogDialogFragment dialog = SyncUpCatalogDialogFragment.newInstance();
+                                dialog.setCancelable(false);
+                                dialog.show(getFragmentManager(), "");
+                                Toast.makeText(getApplicationContext(), "Success to login", Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        });
 
                     }else{
                         Toast.makeText(getApplicationContext(),"An error occur while login was doing",Toast.LENGTH_SHORT).show();
@@ -104,7 +108,18 @@ public class LoginActivity extends AppCompatActivity {
         editor.commit();
     }
     private void initActions() {
-        login.setOnClickListener(v -> login());
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                login();
+            }
+        });
     }
-
+    private void validateSession() {
+        if (!Remember.getString("access_token", "").isEmpty()) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    }
 }
