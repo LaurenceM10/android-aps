@@ -209,13 +209,19 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void fillUserInfo(){
-        Call<Student> callStudent = Api.instance().getStudentById("Bearer "+ Remember.getString("access_token",""), Remember.getInt("id",0));
+        Call<Student> callStudent = Api.instance().getStudentById("Bearer "+ Remember.getString("access_token",""),
+                1129);
         callStudent.enqueue(new Callback<Student>() {
             @Override
             public void onResponse(Call<Student> call, Response<Student> response) {
                 if (response.isSuccessful()) {
+
+                    Log.i("Debug",response.body().toString());
+
                     String name = response.body().getName();
                     userNameTextView.setText(name);
+
+
 
                     Toast.makeText(getApplicationContext(), "Request successful", Toast.LENGTH_SHORT).show();
                 } else {

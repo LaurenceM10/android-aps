@@ -26,11 +26,10 @@ public interface ApiInterface {
     @GET("GET/People")
     Call<List<Person>> getPeople(@Header("Authorization") String authorization);
 
-    @GET("GET/People?id={id}")
-    Call<Student> getStudentById(@Header("Authorization") String Authorization, @Path("id") int id);
+    @GET("GET/People?")
+    Call<Student> getStudentById(@Header("Authorization") String Authorization, @Query("id") int id);
 
     //Method Post
-
     @POST("auth")
     Call<AccessToken> loginUser(@Body UserModel userModel);
 
