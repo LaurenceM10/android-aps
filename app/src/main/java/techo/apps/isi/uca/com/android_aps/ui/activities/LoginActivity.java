@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
         String nickname = String.valueOf(username.getText().toString());
         String pass= String.valueOf(password.getText().toString());
         if(nickname.equals("") || pass.equals("")) {
-            Toast.makeText(getApplicationContext(),"Can't leave empty fields",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"No puede dejar campos vacíos",Toast.LENGTH_SHORT).show();
         }else{
             UserModel userModel = new UserModel();
             userModel.setUsername(username.getText().toString());
@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                                 SyncUpCatalogDialogFragment dialog = SyncUpCatalogDialogFragment.newInstance();
                                 dialog.setCancelable(false);
                                 dialog.show(getFragmentManager(), "");
-                                Toast.makeText(getApplicationContext(), "Success to login", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "Sesión iniciada", Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
                                 finish();
@@ -84,13 +84,13 @@ public class LoginActivity extends AppCompatActivity {
                         });
 
                     }else{
-                        Toast.makeText(getApplicationContext(),"An error occur while login was doing",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Ocurrió un error al iniciar sesión",Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<AccessToken> call, Throwable t) {
-                    Log.e("Err","An error occur while  login was doing", t);
+                    Log.e("Err","Ocurrió un error al iniciar sesión", t);
 
                 }
             });

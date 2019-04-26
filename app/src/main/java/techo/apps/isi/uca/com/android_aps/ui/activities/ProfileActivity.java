@@ -182,7 +182,7 @@ public class ProfileActivity extends AppCompatActivity {
                         PackageManager.PERMISSION_GRANTED){
                     openCamera();
                 }else{
-                    Toast.makeText(this, "PERMISSION DENIED....",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "PERMISOS DENEGADOS....",Toast.LENGTH_SHORT).show();
                 }
             }
         }
@@ -210,7 +210,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void fillUserInfo(){
         Call<Student> callStudent = Api.instance().getStudentById("Bearer "+ Remember.getString("access_token",""),
-                1129);
+                Remember.getInt("id", 0));
         callStudent.enqueue(new Callback<Student>() {
             @Override
             public void onResponse(Call<Student> call, Response<Student> response) {
@@ -223,15 +223,15 @@ public class ProfileActivity extends AppCompatActivity {
 
 
 
-                    Toast.makeText(getApplicationContext(), "Request successful", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Solicitud exitosa", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "An error occurred while getting user info", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Ocurrió un error al obtener info del usuario", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Student> call, Throwable t) {
-                Log.e("Err", "An error occurred while getting user info", t);
+                Log.e("Err", "Ocurrió un error al obtener info del usuario", t);
             }
         });
 
